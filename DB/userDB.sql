@@ -7,4 +7,4 @@ create table if not exists users (
     password varchar(300) not null comment '로그인 암호'
 );
 
-select * from users
+select * from users;

@@ -3,7 +3,7 @@ const mysql = require('mysql');
 const path = require('path');
 const static = require('serve-static');
 
-const dbconfig = require('./config/dbconfig.js');
+const dbconfig = require('./config/dbconfig.json');
 
 // Database Connection Pool
 const pool = mysql.createPool({
@@ -31,7 +31,9 @@ app.post('/process/adduser', (req, res) => {
 
   pool.getConnection((err, conn) => {
     if (err) {
-      conn.release();
+      if (conn) {
+        conn.release();
+      }
       console.log('데이터베이스 연결 시 에러 발생.');
 
       res.writeHead('200', { 'Content-Type': 'text/html;charset=utf8' });
@@ -44,8 +46,8 @@ app.post('/process/adduser', (req, res) => {
     console.log('success to connect to database');
 
     const exec = conn.query(
-      'insert into users (id, name, password, age) values (?, ?, ?, password(?))',
-      [paramId, paramName, paramPassword, paramAge],
+      'insert into users (id, name, age, password) values (?, ?, ?, ?)',
+      [paramId, paramName, paramAge, paramPassword],
       (err, result) => {
         conn.release();
         console.log('실행 대상 SQL : ' + exec.sql);
