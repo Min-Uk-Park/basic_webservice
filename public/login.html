@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign In page (feat. MySQL, NodeJS)</title>
+  </head>
+  <body>
+    <h1>사용자 로그인 페이지</h1>
+    <br />
+    <form action="/process/login" method="post">
+      <table>
+        <tr>
+          <td><label>ID </label></td>
+          <td>
+            <input type="text" name="id" placeholder="username@gmail.com" />
+          </td>
+        </tr>
+        <tr>
+          <td><label>Password </label></td>
+          <td><input type="password" name="password" placeholder="" /></td>
+        </tr>
+      </table>
+      <input type="submit" value="login" />
+  </body>
+</html>
